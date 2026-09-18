@@ -1,0 +1,463 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #dbeafe, #f8fafc);
+    min-height: 100vh;
+}
+
+
+/* =========================
+   NAVIGATION BAR
+========================= */
+
+nav {
+    background: #1e3a8a;
+    color: white;
+    padding: 18px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #bfdbfe;
+}
+
+
+/* =========================
+   HOME PAGE
+========================= */
+
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 19px;
+    color: #64748b;
+    margin-bottom: 35px;
+}
+
+.home-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.main-button {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.main-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   FORM CONTAINER
+========================= */
+
+.form-container {
+    max-width: 950px;
+    margin: 40px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / 3;
+}
+
+label {
+    font-weight: bold;
+    color: #334155;
+    margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2563eb;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+button {
+    border: none;
+    padding: 12px 25px;
+    border-radius: 7px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.add-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.add-btn:hover {
+    background: #1d4ed8;
+}
+
+.reset-btn {
+    background: #64748b;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #475569;
+}
+
+
+/* =========================
+   EMPLOYEE TABLE
+========================= */
+
+.table-container {
+    max-width: 1400px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+
+    overflow-x: auto;
+}
+
+.table-container h1 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    background: #1e3a8a;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+
+/* =========================
+   ADD NEW BUTTON
+========================= */
+
+.add-new {
+    display: inline-block;
+
+    background: #16a34a;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.add-new:hover {
+    background: #15803d;
+}
+
+
+/* =========================
+   EDIT AND DELETE
+========================= */
+
+.edit-btn,
+.delete-btn {
+    display: inline-block;
+
+    padding: 7px 10px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 13px;
+
+    margin: 2px;
+}
+
+.edit-btn {
+    background: #f59e0b;
+}
+
+.edit-btn:hover {
+    background: #d97706;
+}
+
+.delete-btn {
+    background: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-container {
+    max-width: 1200px;
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.search-container h1 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 25px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.search-form input {
+    flex: 1;
+}
+
+.search-form button {
+    background: #2563eb;
+    color: white;
+}
+
+.search-form button:hover {
+    background: #1d4ed8;
+}
+
+.no-data {
+    text-align: center;
+    color: #64748b;
+    padding: 30px;
+}
+
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+.auth-container {
+    width: 400px;
+    max-width: 90%;
+
+    margin: 80px auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.auth-container h1 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+.auth-container p {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.auth-container label {
+    display: block;
+    margin-top: 15px;
+}
+
+.auth-container input {
+    margin-top: 5px;
+}
+
+.auth-link {
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 15px 20px;
+    }
+
+    .form-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: 1;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .search-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+
+}

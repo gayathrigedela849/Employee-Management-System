@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/add_employee">
+                Add Employee
+            </a>
+
+            <a href="/view_employee">
+                View Employees
+            </a>
+
+            <a href="/search_employee">
+                Search Employee
+            </a>
+
+            {% if session.get("username") %}
+
+                <a href="/logout">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/register">
+                    Register
+                </a>
+
+                <a href="/login">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <div class="hero">
+
+        <h1>
+            Employee Management System
+        </h1>
+
+        <p>
+            Manage employee information easily and efficiently.
+        </p>
+
+        <div class="home-buttons">
+
+            <a href="/add_employee"
+               class="main-button">
+                Add Employee
+            </a>
+
+            <a href="/view_employee"
+               class="main-button">
+                View Employees
+            </a>
+
+            <a href="/search_employee"
+               class="main-button">
+                Search Employee
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
