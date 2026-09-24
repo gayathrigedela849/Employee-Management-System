@@ -502,7 +502,7 @@ def register_user():
     email = request.form["email"]
     password = request.form["password"]
 
-    connection = sqlite3.connect("users.db")
+    connection = sqlite3.connect("employees.db")
     cursor = connection.cursor()
 
     try:
@@ -553,7 +553,7 @@ def login_user():
     username = request.form["username"]
     password = request.form["password"]
 
-    connection = sqlite3.connect("users.db")
+    connection = sqlite3.connect("employees.db")
 
     cursor = connection.cursor()
 
