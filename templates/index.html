@@ -5,93 +5,1169 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Employee Management System</title>
+    <title>EMS | Dashboard</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
+
 <body>
 
-    <nav>
+    <!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-        <div class="logo">
-            Employee Management System
-        </div>
+    <aside class="sidebar">
 
-        <div class="nav-links">
+        <div class="sidebar-logo">
 
-            <a href="/">Home</a>
+            <div class="logo-icon">
+                EMS
+            </div>
 
-            <a href="/add_employee">
-                Add Employee
-            </a>
-
-            <a href="/view_employee">
-                View Employees
-            </a>
-
-            <a href="/search_employee">
-                Search Employee
-            </a>
-
-            {% if session.get("username") %}
-
-                <a href="/logout">
-                    Logout
-                </a>
-
-            {% else %}
-
-                <a href="/register">
-                    Register
-                </a>
-
-                <a href="/login">
-                    Login
-                </a>
-
-            {% endif %}
+            <div>
+                <h2>Employee</h2>
+                <span>Management System</span>
+            </div>
 
         </div>
 
-    </nav>
 
+        <div class="sidebar-menu">
 
-    <div class="hero">
-
-        <h1>
-            Employee Management System
-        </h1>
-
-        <p>
-            Manage employee information easily and efficiently.
-        </p>
-
-        <div class="home-buttons">
-
-            <a href="/add_employee"
-               class="main-button">
-                Add Employee
+            <a href="/" class="side-link active">
+                <span class="side-icon">⌂</span>
+                <span>Dashboard</span>
             </a>
 
-            <a href="/view_employee"
-               class="main-button">
-                View Employees
+
+            <a href="/view_employee" class="side-link">
+                <span class="side-icon">👥</span>
+                <span>Employees</span>
             </a>
 
-            <a href="/search_employee"
-               class="main-button">
-                Search Employee
+
+            <a href="/add_employee" class="side-link">
+                <span class="side-icon">＋</span>
+                <span>Add Employee</span>
+            </a>
+
+
+            <a href="/search_employee" class="side-link">
+                <span class="side-icon">⌕</span>
+                <span>Search</span>
             </a>
 
         </div>
 
-    </div>
+
+        <div class="sidebar-divider"></div>
+
+
+        <div class="account-title">
+            ACCOUNT
+        </div>
+
+
+        {% if session.get("username") %}
+
+        <a href="/logout" class="side-link">
+
+            <span class="side-icon">↪</span>
+
+            <span>Logout</span>
+
+        </a>
+
+        {% else %}
+
+        <a href="/login" class="side-link">
+
+            <span class="side-icon">🔐</span>
+
+            <span>Login</span>
+
+        </a>
+
+
+        <a href="/register" class="side-link">
+
+            <span class="side-icon">📝</span>
+
+            <span>Register</span>
+
+        </a>
+
+        {% endif %}
+
+
+        <!-- SIDEBAR QUOTE -->
+
+        <div class="sidebar-quote">
+
+            <div class="quote-icon">
+                👥
+            </div>
+
+            <h3>
+                Better People
+                <br>
+                Better Tomorrow
+            </h3>
+
+            <p>
+                Manage&nbsp;&nbsp;•&nbsp;&nbsp;Grow&nbsp;&nbsp;•&nbsp;&nbsp;Succeed
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+         TOP BAR
+    ================================================= -->
+
+        <header class="topbar">
+
+            <div class="topbar-space"></div>
+
+
+            <div class="user-area">
+                <button id="theme-toggle" class="theme-toggle" type="button">
+                    🌙
+                </button>
+                <div class="topbar-divider"></div>
+
+
+                <!-- USER MENU -->
+
+                <details class="user-menu">
+
+                    <summary class="user-menu-button">
+
+
+                        <div class="user-avatar">
+
+                            {% if session.get("username") %}
+
+                            {{ session.get("username")[0]|upper }}
+
+                            {% else %}
+
+                            G
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="user-info">
+
+                            <strong>
+
+                                {% if session.get("username") %}
+
+                                {{ session.get("username") }}
+
+                                {% else %}
+
+                                Gayathri
+
+                                {% endif %}
+
+                            </strong>
+
+                            <span>
+                                Administrator
+                            </span>
+
+                        </div>
+
+
+                        <span class="user-menu-arrow">
+                            ⌄
+                        </span>
+
+                    </summary>
+
+
+                    <div class="user-dropdown">
+
+
+                        <div class="dropdown-user">
+
+                            <div class="dropdown-avatar">
+
+                                {% if session.get("username") %}
+
+                                {{ session.get("username")[0]|upper }}
+
+                                {% else %}
+
+                                G
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    {% if session.get("username") %}
+
+                                    {{ session.get("username") }}
+
+                                    {% else %}
+
+                                    Gayathri
+
+                                    {% endif %}
+
+                                </strong>
+
+                                <span>
+                                    Employee Management System
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="dropdown-divider"></div>
+
+
+                        {% if session.get("username") %}
+
+                        <a href="/logout" class="dropdown-link">
+
+                            🚪
+
+                            <span>
+                                Logout
+                            </span>
+
+                        </a>
+
+                        {% else %}
+
+                        <a href="/login" class="dropdown-link">
+
+                            🔐
+
+                            <span>
+                                Login
+                            </span>
+
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+         WELCOME BANNER
+    ================================================= -->
+
+        <section class="welcome-banner">
+
+
+            <div class="welcome-content">
+
+                <span class="welcome-small">
+                    WELCOME BACK
+                </span>
+
+
+                <h1>
+
+                    {% if session.get("username") %}
+
+                    Good morning, {{ session.get("username") }}! 👋
+
+                    {% else %}
+
+                    Good morning, Gayathri! 👋
+
+                    {% endif %}
+
+                </h1>
+
+
+                <p>
+                    Here's your workforce overview and latest updates.
+                </p>
+
+            </div>
+
+
+            <div class="date-card">
+
+                <div class="date-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <span id="current-day">
+                        Tuesday
+                    </span>
+
+                    <strong id="current-date">
+                        Sep 23, 2025
+                    </strong>
+
+                </div>
+
+            </div>
+            <!-- LOGOUT BUTTON -->
+            <a href="/logout" class="top-logout">
+                🚪 Logout
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================================
+         MAIN STATISTICS
+    ================================================= -->
+
+        <section class="statistics-grid">
+
+
+            <!-- TOTAL EMPLOYEES -->
+
+            <a href="/view_employee" class="stat-card-link">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon employees-icon">
+                        👥
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <h2>
+                            {{ total_employees }}
+                        </h2>
+
+                        <span>
+                            TOTAL EMPLOYEES
+                        </span>
+
+                        <small>
+                            ↟ &nbsp; View all employees
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- DEPARTMENTS -->
+
+            <a href="/departments" class="stat-card-link">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon department-icon">
+                        🏢
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <h2>
+                            {{ total_departments }}
+                        </h2>
+
+                        <span>
+                            DEPARTMENTS
+                        </span>
+
+                        <small>
+                            ─ &nbsp; View departments
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- DESIGNATIONS -->
+
+            <a href="/designations" class="stat-card-link">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon designation-icon">
+                        💼
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <h2>
+                            {{ total_designations }}
+                        </h2>
+
+                        <span>
+                            DESIGNATIONS
+                        </span>
+
+                        <small>
+                            ＋ &nbsp; View designations
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- RECENT EMPLOYEES -->
+
+            <a href="/recent_employees" class="stat-card-link">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon recent-icon">
+                        🕘
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <h2>
+                            {{ recent_count }}
+                        </h2>
+
+                        <span>
+                            RECENT RECORDS
+                        </span>
+
+                        <small>
+                            ↟ &nbsp; View recent employees
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================================
+         ANALYTICS + MANAGEMENT
+    ================================================= -->
+
+        <section class="dashboard-row">
+
+
+            <!-- =================================================
+             WORKFORCE ANALYTICS
+        ================================================= -->
+
+            <div class="dashboard-panel analytics-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span>
+                            WORKFORCE ANALYTICS
+                        </span>
+
+                        <h2>
+                            Department-wise employee distribution
+                        </h2>
+
+                    </div>
+
+
+                    <div class="panel-header-icon">
+                        ▥
+                    </div>
+
+                </div>
+
+
+                {% if department_data %}
+
+                <div class="analytics-content">
+
+
+                    <!-- DONUT -->
+
+                    <div class="chart-area">
+
+                        <div class="donut-wrapper">
+
+                            <canvas id="departmentChart"></canvas>
+
+                            <div class="donut-center">
+
+                                <strong>
+                                    {{ total_employees }}
+                                </strong>
+
+                                <span>
+                                    Total Employees
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LEGEND -->
+
+                        <div class="chart-legend">
+
+                            {% for department in department_data %}
+
+                            <div class="legend-item">
+
+                                <span class="legend-dot" style="background-color: {{ department['color'] }};"></span>
+
+                                <span>
+                                    {{ department["department"] }}
+                                </span>
+
+                                <strong>
+                                    {{ department["employee_count"] }}
+                                    ({{ department["percentage"] }}%)
+                                </strong>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- BREAKDOWN -->
+
+                    <div class="department-breakdown">
+
+                        <div class="breakdown-title">
+                            Department Breakdown
+                        </div>
+
+
+                        {% for department in department_data %}
+
+                        <div class="breakdown-item">
+
+                            <div class="breakdown-top">
+
+                                <strong>
+                                    {{ department["department"] }}
+                                </strong>
+
+                                <span>
+                                    {{ department["percentage"] }}%
+                                </span>
+
+                            </div>
+
+
+                            <div class="breakdown-subtitle">
+
+                                {{ department["employee_count"] }}
+                                employee{% if department["employee_count"] != 1 %}s{% endif %}
+
+                            </div>
+
+
+                            <div class="progress-bar">
+
+                                <div class="progress-fill"
+                                    style="width: {{ department['percentage'] }}%; background-color: {{ department['color'] }};">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+
+                        {% if department_data %}
+
+                        <div class="analytics-insight">
+
+                            <div class="insight-icon">
+                                💡
+                            </div>
+
+                            <p>
+
+                                <strong>
+                                    {{ department_data[0]["department"] }}
+                                </strong>
+
+                                department has the highest number of employees
+                                ({{ department_data[0]["percentage"] }}%
+                                of total workforce).
+
+                            </p>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <div class="no-data-message">
+
+                    <div>
+                        📊
+                    </div>
+
+                    <p>
+                        No department data available yet.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- =================================================
+             MANAGEMENT CENTER
+        ================================================= -->
+
+            <div class="dashboard-panel actions-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span>
+                            MANAGEMENT CENTER
+                        </span>
+
+                        <h2>
+                            Quick access to key features
+                        </h2>
+
+                    </div>
+
+
+                    <div class="panel-header-icon">
+                        ▦
+                    </div>
+
+                </div>
+
+
+                <div class="quick-action-list">
+
+
+                    <a href="/departments" class="quick-action">
+
+                        <div class="quick-action-icon department-action">
+                            👥
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Department Insights
+                            </strong>
+
+                            <span>
+                                Understand workforce distribution
+                            </span>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+
+
+                    <a href="/designations" class="quick-action">
+
+                        <div class="quick-action-icon designation-action">
+                            💼
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Designation Insights
+                            </strong>
+
+                            <span>
+                                Explore employee designations
+                            </span>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+
+
+                    <a href="/recent_employees" class="quick-action">
+
+                        <div class="quick-action-icon recent-action">
+                            🕘
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Recent Records
+                            </strong>
+
+                            <span>
+                                View latest employee additions
+                            </span>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+
+
+                    <a href="/export_employees" class="quick-action">
+
+                        <div class="quick-action-icon export-action">
+                            📥
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Export Employee Report
+                            </strong>
+
+                            <span>
+                                Download employee data
+                            </span>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+         RECENT EMPLOYEES + QUOTE
+    ================================================= -->
+
+        <section class="recent-grid">
+
+
+            <!-- RECENT EMPLOYEES -->
+
+            <div class="dashboard-panel recent-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span>
+                            RECENT EMPLOYEE RECORDS
+                        </span>
+
+                        <h2>
+                            Latest 5 employees added to the system
+                        </h2>
+
+                    </div>
+
+
+                    <a href="/search_employee" class="view-all">
+
+                        Search Employee →
+
+                    </a>
+
+                </div>
+
+
+                {% if recent_employees %}
+
+                <div class="table-wrapper">
+
+                    <table class="professional-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Department</th>
+
+                                <th>Designation</th>
+
+                                <th>Joining Date</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for employee in recent_employees %}
+
+                            <tr>
+
+
+                                <td>
+
+                                    <strong>
+                                        {{ employee["employee_id"] }}
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="employee-cell">
+
+                                        <div class="employee-avatar">
+
+                                            {{ employee["fullname"][0]|upper }}
+
+                                        </div>
+
+                                        <span>
+                                            {{ employee["fullname"] }}
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    {{ employee["department"] }}
+                                </td>
+
+
+                                <td>
+                                    {{ employee["designation"] }}
+                                </td>
+
+
+                                <td>
+                                    {{ employee["joining_date"] }}
+                                </td>
+
+
+                                <td>
+
+                                    <span class="status-badge">
+                                        Active
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <a href="/view_employee/{{ employee['employee_id'] }}" class="view-action">
+                                        👁 View
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        👥
+                    </div>
+
+                    <h3>
+                        No employees yet
+                    </h3>
+
+                    <p>
+                        Start building your employee records
+                        by adding your first employee.
+                    </p>
+
+                    <a href="/add_employee" class="welcome-button">
+
+                        + Add First Employee
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- QUOTE CARD -->
+
+            <aside class="quote-card">
+
+                <div class="quote-mark">
+                    “
+                </div>
+
+
+                <blockquote>
+                    Great teams build
+                    <br>
+                    great organizations.
+                </blockquote>
+
+
+                <span class="quote-author">
+                    — Employee Management System
+                </span>
+
+
+                <div class="quote-illustration">
+
+                    <div class="plant">
+                        🌿
+                    </div>
+
+                    <div class="people">
+                        👩‍💻 👨‍💻 👩‍💼
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <span>
+                Employee Management System
+            </span>
+
+            <span>
+                Dashboard • 2026
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+     CHART + DATE SCRIPT
+===================================================== -->
+
+    <script>
+
+        /* DATE */
+
+        const today = new Date();
+
+        const dayOptions = {
+            weekday: "long"
+        };
+
+        const dateOptions = {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        };
+
+        document.getElementById("current-day").textContent =
+            today.toLocaleDateString("en-US", dayOptions);
+
+        document.getElementById("current-date").textContent =
+            today.toLocaleDateString("en-US", dateOptions);
+
+
+
+        /* DEPARTMENT CHART */
+
+        const departmentData =
+            {{ department_data | tojson }};
+
+
+        if (departmentData.length > 0) {
+
+            const labels = departmentData.map(
+                item => item.department
+            );
+
+            const values = departmentData.map(
+                item => item.employee_count
+            );
+
+
+            const colors = [
+                "#2563eb",
+                "#8b5cf6",
+                "#10b981",
+                "#f59e0b",
+                "#ef4444",
+                "#06b6d4"
+            ];
+
+
+            const canvas =
+                document.getElementById("departmentChart");
+
+
+            new Chart(canvas, {
+
+                type: "doughnut",
+
+                data: {
+
+                    labels: labels,
+
+                    datasets: [{
+
+                        data: values,
+
+                        backgroundColor:
+                            labels.map(
+                                (_, index) =>
+                                    colors[index % colors.length]
+                            ),
+
+                        borderWidth: 2,
+
+                        borderColor: "#ffffff"
+
+                    }]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: true,
+
+                    cutout: "68%",
+
+                    plugins: {
+
+                        legend: {
+                            display: false
+                        },
+
+                        tooltip: {
+                            enabled: true
+                        }
+
+                    }
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 

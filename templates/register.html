@@ -5,17 +5,18 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Register</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
 <body>
+    <button id="theme-toggle" class="theme-toggle"  type="button">
+        🌙
+    </button>
 
     <div class="auth-container">
 
@@ -28,64 +29,45 @@
         </p>
 
 
-        <form action="/register_user"
-              method="POST">
+        <form action="/register_user" method="POST">
 
             <label>
                 Full Name
             </label>
 
-            <input
-                type="text"
-                name="fullname"
-                placeholder="Enter full name"
-                required>
+            <input type="text" name="fullname" placeholder="Enter full name" autocomplete="off" required>
 
 
             <label>
                 Username
             </label>
 
-            <input
-                type="text"
-                name="username"
-                placeholder="Enter username"
-                required>
+            <input type="text" name="username" placeholder="Enter username" autocomplete="off" required>
 
 
             <label>
                 Email
             </label>
 
-            <input
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                required>
+            <input type="email" name="email" placeholder="Enter email" autocomplete="off" required>
 
 
             <label>
                 Password
             </label>
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                required>
+            <input type="password" name="password" placeholder="Enter password" autocomplete="off" required>
 
 
             <div class="button-group">
 
-                <button type="submit"
-                        class="add-btn">
+                <button type="submit" class="add-btn">
 
                     Register
 
                 </button>
 
-                <button type="reset"
-                        class="reset-btn">
+                <button type="reset" class="reset-btn">
 
                     Reset
 
@@ -107,6 +89,7 @@
         </p>
 
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 

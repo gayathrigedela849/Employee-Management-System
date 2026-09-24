@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Details</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="employee-details-page">
+
+        <div class="employee-details-card">
+
+            <div class="employee-details-header">
+
+                <div>
+                    <span>EMPLOYEE PROFILE</span>
+                    <h1>Employee Details</h1>
+                </div>
+
+            </div>
+
+
+            <div class="employee-profile">
+
+                <div class="profile-avatar">
+                    {{ employee["fullname"][0]|upper }}
+                </div>
+
+                <div class="profile-name">
+                    <h2>{{ employee["fullname"] }}</h2>
+                    <p>{{ employee["designation"] }}</p>
+                </div>
+
+            </div>
+
+
+            <div class="employee-info-grid">
+
+                <div class="info-box">
+                    <span>Employee ID</span>
+                    <strong>{{ employee["employee_id"] }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Department</span>
+                    <strong>{{ employee["department"] }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Designation</span>
+                    <strong>{{ employee["designation"] }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Joining Date</span>
+                    <strong>{{ employee["joining_date"] }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Phone Number</span>
+                    <strong>{{ employee["phone"] }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Email</span>
+                    <strong>{{ employee["email"] }}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>Salary</span>
+                    <strong>₹ {{ employee["salary"] }}</strong>
+                </div>
+
+            </div>
+
+
+            <div class="employee-status">
+
+                <span class="status-badge">
+                    Active
+                </span>
+
+            </div>
+            <div class="employee-actions">
+
+                <a href="/" class="back-button">
+                    ← Back to Dashboard
+                </a>
+
+                <button type="button" class="print-button" onclick="window.print()">
+                    🖨 Print / Export PDF
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

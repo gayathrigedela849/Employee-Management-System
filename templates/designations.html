@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Designation Overview</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Dashboard</a>
+
+            <a href="/add_employee">Add Employee</a>
+
+            <a href="/view_employee">Employees</a>
+
+            <a href="/search_employee">Search</a>
+
+        </div>
+
+    </nav>
+
+    <div class="table-container">
+
+        <h1>💼 Designation Overview</h1>
+
+        <p class="no-data">
+            Employee distribution by designation
+        </p>
+
+        <table>
+
+            <tr>
+                <th>Designation</th>
+                <th>Number of Employees</th>
+            </tr>
+
+            {% for designation in designations %}
+
+            <tr>
+
+                <td>
+                    {{ designation['designation'] }}
+                </td>
+
+                <td>
+                    {{ designation['employee_count'] }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <div style="text-align:center; margin-top:25px;">
+
+            <a href="/" class="main-button">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

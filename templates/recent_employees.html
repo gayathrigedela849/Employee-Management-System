@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Recent Employees</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            Employee Management System
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Dashboard</a>
+
+            <a href="/add_employee">Add Employee</a>
+
+            <a href="/view_employee">Employees</a>
+
+            <a href="/search_employee">Search</a>
+
+        </div>
+
+    </nav>
+
+    <div class="table-container">
+
+        <h1>🆕 Recent Employees</h1>
+
+        <p class="no-data">
+            Latest employee records added to the system
+        </p>
+
+        <table>
+
+            <tr>
+
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Joining Date</th>
+
+            </tr>
+
+            {% for employee in employees %}
+
+            <tr>
+
+                <td>{{ employee['employee_id'] }}</td>
+
+                <td>{{ employee['fullname'] }}</td>
+
+                <td>{{ employee['department'] }}</td>
+
+                <td>{{ employee['designation'] }}</td>
+
+                <td>{{ employee['joining_date'] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <div style="text-align:center; margin-top:25px;">
+
+            <a href="/" class="main-button">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

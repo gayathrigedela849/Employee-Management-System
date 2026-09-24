@@ -5,13 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Search Employee</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
@@ -51,15 +49,9 @@
         </h1>
 
 
-        <form action="/search_employee"
-              method="POST"
-              class="search-form">
+        <form action="/search_employee" method="POST" class="search-form">
 
-            <input
-                type="text"
-                name="search"
-                placeholder="Search by Employee ID, Name or Department"
-                required>
+            <input type="text" name="search" placeholder="Search by Employee ID, Name or Department" required>
 
             <button type="submit">
                 Search
@@ -84,8 +76,8 @@
                         <th>Phone</th>
                         <th>Department</th>
                         <th>Designation</th>
+                        <th>Status</th>
                         <th>Actions</th>
-
                     </tr>
 
                 </thead>
@@ -122,16 +114,21 @@
                         </td>
 
                         <td>
+                            <span class="status-badge">Active</span>
+                        </td>
 
-                            <a href="/edit/{{ employee['id'] }}"
-                               class="edit-btn">
+                        <td class="actions">
+
+                            <a href="/edit/{{ employee['id'] }}" class="edit-btn">
                                 Edit
                             </a>
 
-                            <a href="/delete/{{ employee['id'] }}"
-                               class="delete-btn"
-                               onclick="return confirm('Delete this employee?')">
+                            <a href="/delete/{{ employee['id'] }}" class="delete-btn"
+                                onclick="return confirm('Delete this employee?')">
                                 Delete
+                            </a>
+                            <a href="/view_employee/{{ employee['employee_id'] }}" class="view-action">
+                                👁 View
                             </a>
 
                         </td>
@@ -155,6 +152,7 @@
         {% endif %}
 
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 
